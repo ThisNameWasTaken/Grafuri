@@ -1,6 +1,10 @@
 ## Graf orientat
-O pereche ordonata de noduri si muchii,
-unde pentru oricare doua noduri `a` si `b` `(a, b) != (b, a)`.
+O pereche de multimi `G = (V, E)` unde `V` este multimea varfurilor
+si `E ⊆ VxV` este multimea arcelor (multime de perechi ordonate).
+
+## Graf neorientat
+O pereche de multimi `G = (V, E)` unde `V` este multimea varfurilor
+si `E ⊆ VxV` este multimea muchiilor (multime de perechi neordonate).
 
 ## Multiset
 Multime in care se pot repeta elementele.<br/>
@@ -9,12 +13,12 @@ Fie `S` o multime finita nevida, fiecarui element din `S` ii atasam un ordin de 
 _Notatie_: <code>R = (x<sup>r</sup>|x∊S)</code><br/>
 _Exemplu_:
 <pre>
-<code>
-S = {2, 3, 5, 7}
+<code>S = {2, 3, 5, 7}
 R = {2<sup>3</sup>, 3<sup>1</sup>, 5<sup>2</sup>, 7<sup>4</sup>}
 |R| = 10 Suma multiplicitatilor(3 + 1 + 2 + 4)
 </code>
 </pre>
+
 ## Adiacenta
 Doua varfuri `a` si `b` sunt adiacente daca
 sunt extremitati ale aceleiasi muchii.
@@ -43,7 +47,6 @@ numarul muchiilor care vin spre acesta. <code>d<sub>G</sub><sup>-</sup>(nod)</co
 ## Grad exterior
 Gradul exterior unui nod este egal cu
 numarul muchiilor care pleaca din acesta. <code>d<sub>G</sub><sup>+</sup>(nod)</code>
-
 
 ## Multisetul gradelor interioare
 <code>s<sup>-</sup>(G) = {d<sub>G</sub><sup>-</sup>(v<sub>1</sub>), d<sub>G</sub><sup>-</sup>(v<sub>2</sub>), d<sub>G</sub><sup>-</sup>(v<sub>3</sub>), ..., d<sub>G</sub><sup>-</sup>(vn)}</code><br/>
@@ -152,4 +155,31 @@ _Prorietati:_
 - un arbore cu `n` varfuri are `n-1` muchii
 
 ## Arbore partial
-Graf partial care este si arbore
+Graf partial care este si arbore.
+
+## Arbore partial de cost minim
+Arbore partial in care suma costurilor muchiilor care il formeaza sa fie minim posibila.
+
+## Retea de transport
+O structura `N = (G, S, T, I, c)` unde:
+  - `G = (V, E)` este un graf orientat cu `V = S ∪ I ∪ T`, unde `S`, `I`, `T` sunt multimi disjuncte, nevide,
+  cu semnificatia:
+    * `S` - multimea surselor (intrarilor)
+    * `T` - multimea destinatiilor (iesirilor)
+    * `I` - multimea varfurilor intermediare
+  - `c:E->N` este functia capacitate, cu semnificatia: `c(e)` = cantitatea maxima care poate fi
+  transportata prin arcul `e`.
+  
+## Flux
+Fie o retea de transport `N = (G, s, t, I, c)` cu prorietatea: <code>d<sup>−</sup>(s) = d<sup>+</sup>(t) = 0)</code>.
+Un flux ın `N` este o functie `f : E -> N` cu proprietatile:
+1. `0 <= f(e) <= c(e)`, `∀e ∈ E(G)` - conditia de marginire
+2. pentru orice varf intermediar `v ∈ I`, fluxul (total) care intra ın varful `v` este egal cu fluxul (total)
+care iese din varful `v` - conditia de conservare a fluxului:
+<pre>
+ &Sigma; f(uv) = &Sigma; f(vu),
+<sup>uv∈E</sup>       <sup>vu∈E</sup>
+</pre>
+## Cuplaj
+Un cuplaj ıntr-un graf neorientat `G(E, V)` este o multime de muchii `M ⊆ E` neadiacente doua
+cate doua.
