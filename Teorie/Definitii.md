@@ -1,22 +1,23 @@
 ## Graf orientat
 O pereche ordonata de noduri si muchii,
-unde pentru oricare doua noduri `a` si `b` `(a, b) = (b, a)`.
+unde pentru oricare doua noduri `a` si `b` `(a, b) != (b, a)`.
 
 ## Multiset
 Multime in care se pot repeta elementele.<br/>
 Fie `S` o multime finita nevida, fiecarui element din `S` ii atasam un ordin de multiplicitate.<br/>
-`M=(S, r)` unde `r:S->N` este functia de multiplicitate.<br/>
-_Notatie_: <code>R=(x<sup>r</sup>|x∊S)</code><br/>
-_Exemplu_: <br/>
+`M = (S, r)` unde `r:S->N` este functia de multiplicitate.<br/>
+_Notatie_: <code>R = (x<sup>r</sup>|x∊S)</code><br/>
+_Exemplu_:
+<pre>
 <code>
-S = {2, 3, 5, 7}<br/>
-R = {2<sup>3</sup>, 3<sup>1</sup>, 5<sup>2</sup>, 7<sup>4</sup>}<br/>
+S = {2, 3, 5, 7}
+R = {2<sup>3</sup>, 3<sup>1</sup>, 5<sup>2</sup>, 7<sup>4</sup>}
 |R| = 10 Suma multiplicitatilor(3 + 1 + 2 + 4)
 </code>
-
+</pre>
 ## Adiacenta
 Doua varfuri `a` si `b` sunt adiacente daca
-sunt extremitati ale aceleisi muchii.
+sunt extremitati ale aceleiasi muchii.
 
 ## Incidenta
 Doua muchii sunt incidente daca daca au
@@ -33,7 +34,7 @@ din `G`.
 
 ## Grad
 Gradul unui nod este egal cu numarul muchiilor
-incidente acesta.
+incidente cu acesta.
 
 ## Grad interior
 Gradul interior unui nod este egal cu 
@@ -75,7 +76,7 @@ Drum in care toate varfurile sunt distincte.
 Drum in care unul sau mai multe noduri nod apar
 de mai multe ori.
 
-## Circuit elementer
+## Circuit elementar
 Circuit in care toate nodurile sunt distincte
 cu exceptia primului si a ultimului.
 
@@ -91,7 +92,7 @@ Lant in care unul sau mai multe noduri nod apar
 de mai multe ori. Lant in care extremitatile lantului
 au o muchie intre ele.
 
-## Ciclu elementer
+## Ciclu elementar
 Ciclu in care toate nodurile sunt distincte
 cu exceptia primului si a ultimului.
 
@@ -124,8 +125,8 @@ la <code>V<sub>2</sub></code> ai pentru orice pereche `(a, b)` din E1 exista o
 pereche `(f(a), f(b))` in <code>E<sub>2</sub></code>.
 
 ## Graf complementar
-Un graf `G` este complementar lui `G`
-daca oricare doua varfuri din `G` care sunt adiacente
+Un graf `G'` este complementar lui `G`
+daca oricare doua varfuri din `G'` care sunt adiacente
 ele nu sunt adiacente in `G`.
 
 ## Graf bipartit
