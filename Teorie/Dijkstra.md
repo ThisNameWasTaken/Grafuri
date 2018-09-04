@@ -1,31 +1,38 @@
-__Input__: Un graf ponderat, fara ponderi negative, si un nod sursa.
+__Input__: Un graf ponderat, fara ponderi negative, si un nod de start.
 
-__Ouput__: Cea mai scurta cale de la nodul sursa la celelalte noduri ale grafului.
+__Ouput__: Un vector de costuri, cu semnificatie `cost[x]` = costul de la `nodul de start` la nodul `x` si un vector de tati reprezentand un arbore al distantelor fata de `nodul de start`. Din vectorul de tati se poate determina drumul de cost minim la de `nodul de start`, la fiecare nod in parte.
 
-__Descriere__: Fiecarui varf `i` se asociaza o valoare care reprezinta costul minim
-de la nodul de start la nodul curent.
+__Descriere__: Fiecarui varf `u` se asociaza costul minim de la `nodul de start` pana la acel pas. La un pas este ales varful `u` care este estimat a fi cel mai aproape de `nodul de start` si se descopera noi drumuri catre vecinii lui 'u' actualizandu-se costurile acestora.
 
 __Pseudocod__:
 ```python
-    pentru_fiecare nod din graf.noduri:
+    pentru_fiecare nod din noduri:
         cost[nod] = INF
-        tata[nod] = -1
+        tata[nod] = 0
 
-    cost[nodSursa] = 0
+    cost[nodStart] = 0
 
-    noduriDeVeizitat(graf.noduri) // min-heap
+    noduriDeVizitat = PriorityQueue(noduri) //  min-heap
 
-    cat_timp !noduriDeVeizitat.eGol():
-        nod = noduriDeVeizitat.pop()
-        pentru_fiecare vecin din graf.vecini(nod):
+    cat_timp !noduriDeVizitat.eGol():
+        nod = noduriDeVizitat.pop() // extrage minimul
+        pentru_fiecare vecin din vecini[nod]:
             daca cost[nod] + cost[nod][vecin] < cost[vecin]:
                 cost[vecin] = cost[nod] + cost[nod][vecin]
                 tata[vecin] = nod
-                reheap(noduriDeVeizitat)
+    
+    afiseaza cost, tata
 ```
 
-__Corectitudine__: La fiecare pas algoritmul selecteaza un drum optim, de la nodul
-sursa la nodul curent, care este actualizat in cazul in care costul gasit pana
-atunci este mai mare decat costul nodului curent + costul pana la tatal lui.
+__Corectitudine__:
+1. Daca `P` este un drum minim de la `s` la `u`, atunci `P` este drum elementar.
 
-__Timp de rulare__: `O(m * log n)` cu `min-heap`
+2. Daca `P` este un drum minim de la `s` la `u` si `z` este un varf al lui `P`, atunci subdrumul lui `P` de la `s` la `z` este drum minim de la `s` la `z`. Mai general, daca `x` si `y` sunt doua varfuri din `P`, atunci subdrumul lui `P` de la `x` la `y` este drum minim de la `x` la `y`.
+
+3. Fie `G = (V, E, w)` un graf orientat ponderat cu `w : E -> ℝ+` și `s ∈ V` fixat. La finalul algoritmul lui Dijkstra avem: <code>d[u] = &delta;(s, u)</code> pentru orice `u ∈ V` si `tata` memorează un arbore al distanțelor fata de `s`.
+
+__Timp de rulare__: `O(m * log n)` cu `priority queue`
+
+__Structura__:
+- Memoram componentele conexe folosind un vector de tati.
+- Retinem nodurile grafului intr-o coada de prioritati sortata dupa cost.
